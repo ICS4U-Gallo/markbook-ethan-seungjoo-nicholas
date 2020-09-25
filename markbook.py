@@ -91,52 +91,122 @@ def create_assignment_interface():
     print('--------------------------------------------------------------- Create Assignment ---------------------------------------------------------------')
     name = input('Enter assignment name: ')
     due_date = input('Enter due date: ')
-    marks = int(input('Enter maximum points: '))
+    while True:
+        try:
+            marks = int(input('Enter maximum points: '))
+        except:
+            print('Points must be a number, please try again')
+        else:
+            break
     print(create_assignment(name, due_date, marks))
 
 def create_classroom_interface():
+    os.system('clear')
     print('--------------------------------------------------------------- Create Classroom ---------------------------------------------------------------')
     code = input('Enter the course code: ')
     course_name = input('Enter the course name: ')
-    period = input('Enter the period: ')
+    while True:
+        try:
+            period = input('Enter the period: ')
+        except:
+            print('Period must be a number, please try again')
+        else:
+            break
     teacher = input('Enter the teacher name: ')
-    names = input('Enter the student list: ')
-    student_list = names.split()
-    assignments = input('Enter the assignment list: ')
-    assignment_list = assignments.split()
-    
+    # names = input('Enter the student list: ')
+    # student_list = names.split()
+    # assignments = input('Enter the assignment list: ')
+    # assignment_list = assignments.split()
+    print(create_classroom(code, course_name, period, teacher))
     # args: course_code: str, course_name: str, period: int, teacher: str
     # pass
 
 def average_mark_interface():
+    os.system('clear')
+    print('--------------------------------------------------------------- Average Mark ---------------------------------------------------------------')
+    while True:
+        try:
+            marks = input("Enter list of marks: ")
+        except:
+            print("marks must be a number")
+        else:
+            break
+    mark_list = marks.split(', ')
+    i = 0
+    for mark in mark_list:
+        mark_list[i] = int(mark)
+        i += 1
+    student = {"marks": mark_list}
+    print(calculate_average_mark(student))
     # args: student: Dict -> within dict is ['marks': example marks: 10, 20, 30]
-    pass
+    
 
 def add_student_interface():
     #args: student: Dict, classroom: Dict
-    pass
+    os.system('clear')
+    print('-------------------------------------------------------------------- Add Student --------------------------------------------------------------------')
+    first_name = input("Enter the student's first name: ")
+    last_name = input("Enter the student's last name: ")
+    while True:
+        try:
+            grade = int(input("Enter the student's grade: "))
+        except:
+            print('The grade must be a number, please try again')
+        else:
+            break
+    marks = input('Enter any marks the student has (spearate with ", "): ').split(', ')
+    student = {
+        'first_name': first_name,
+        'last_name': last_name,
+        'grade': grade,
+        'marks': marks
+    }
+    print(add_student_to_classroom(student))
 
 def remove_student_interface():
     #args: student: Dict, classroom: Dict
-    pass
+    os.system('clear')
+    print('-------------------------------------------------------------------- Remove Student --------------------------------------------------------------------')
+    first_name = input("Enter the student's first name: ")
+    last_name = input("Enter the student's last name: ")
+    while True:
+        try:
+            grade = int(input("Enter the student's grade: "))
+        except:
+            print('The grade must be a number, please try again')
+        else:
+            break
+    marks = input('Enter any marks the student has (spearate with ", "): ').split(', ')
+    student = {
+        'first_name': first_name,
+        'last_name': last_name,
+        'grade': grade,
+        'marks': marks
+    }
+    print(remove_student_from_classroom(student))
+    
 
 def edit_student_interface():
     #args: student: Dict, **kwargs: Dict
+    os.system('clear')
     pass
 
 
 def main():
     working = True
+    os.system('clear')
     print("------------------------------------------------------- Welcome to the Python Teacher Markbook -------------------------------------------------------")
     while working:
+        os.system('clear')
+        print("------------------------------------------------------- Welcome to the Python Teacher Markbook -------------------------------------------------------")
         user_input = int(input('''
 Choose a program to run:
-Create an Assignment: 1
-Create a Classroom: 2
-Calculate Average Mark: 3
-Add a student to a classroom: 4
-Remove a student from a classroom: 5
-Edit student information: 6
+1: Create an Assignment
+2: Create a Classroom
+3: Calculate Average Mark
+4: Add a student to a classroom
+5: Remove a student from a classroom
+6: Edit student information
 
 
 Enter # Choice: '''))
@@ -154,7 +224,7 @@ Enter # Choice: '''))
         elif user_input == 5:
             edit_student_interface()
         
-        keep_going = input('do you want to do something else y/n')
+        keep_going = input('Return to menu? (y/n): ')
         if keep_going == 'n':
             working = False
 
