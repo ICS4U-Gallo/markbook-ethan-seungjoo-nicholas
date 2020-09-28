@@ -151,7 +151,7 @@ def create_classroom_interface():
 
 def average_mark_interface():
     os.system('clear')
-    print('--------------------------------------------------------------- Average Mark ---------------------------------------------------------------')
+    print('--------------------------------------------------------- Average Mark ---------------------------------------------------------')
     # makes sure that the user enters an integer
     while True:
         try:
@@ -176,7 +176,7 @@ def average_mark_interface():
 def add_student_interface():
     #args: student: Dict, classroom: Dict
     os.system('clear')
-    print('-------------------------------------------------------------------- Add Student --------------------------------------------------------------------')
+    print('--------------------------------------------------------- Add Student ---------------------------------------------------------')
     first_name = input("Enter the student's first name: ")
     last_name = input("Enter the student's last name: ")
     # checks if the grade inputted was an integer
@@ -201,7 +201,7 @@ def add_student_interface():
 def remove_student_interface():
     #args: student: Dict, classroom: Dict
     os.system('clear')
-    print('-------------------------------------------------------------------- Remove Student --------------------------------------------------------------------')
+    print('-------------------------------------------------------- Remove Student --------------------------------------------------------')
     first_name = input("Enter the student's first name: ")
     last_name = input("Enter the student's last name: ")
     with open('classroom.txt') as f:
@@ -222,7 +222,7 @@ def remove_student_interface():
 def edit_student_interface():
     #args: student: Dict, **kwargs: Dict
     os.system('clear')
-    print("---------------------------------------------------------------- Edit student -----------------------------------------------")
+    print("-------------------------------------------------------- Edit student --------------------------------------------------------")
     first_name = input("Enter student's first name: ")
     last_name = input("Enter student's last name: ")
 
