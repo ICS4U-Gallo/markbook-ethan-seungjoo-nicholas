@@ -90,7 +90,7 @@ def remove_student_from_classroom(student: Dict, classroom: Dict):
         json.dump(classroom, f)
     return classroom
 
-#Nicholas?
+#Nicholas
 def edit_student(student: Dict, **kwargs: Dict):
     """Edits the student's info with the provided key/value pairs
 
@@ -116,7 +116,7 @@ def edit_student(student: Dict, **kwargs: Dict):
 
 
 
-#Nicholas and Seungjoo wrote code, Ethan edited the code to make the UI easier to use
+#Nicholas, Seungjoo and Ethan worked together for the rest of this code
 def create_assignment_interface():
     os.system('clear')
     print('--------------------------------------------------------------- Create Assignment ---------------------------------------------------------------')
