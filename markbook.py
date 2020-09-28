@@ -6,11 +6,10 @@ import json
 import os
 from typing import Dict
 
-"""Ethan"""
-
-
+#Ethan
 def create_assignment(name: str, due: str, points: int) -> Dict:
     """Creates an assignment represented as a dictionary
+    
     Args:
         name: the name of the assignment.
         due: the due date for the assignment.
@@ -20,21 +19,17 @@ def create_assignment(name: str, due: str, points: int) -> Dict:
     """
     # makes a dictionary with key-value pairs of name, due, and points
     assignment_dict = {
-        "name": name,
-        "due": due,
+        "name": name, 
+        "due": due, 
         "points": points
     }
-
+    
     return assignment_dict
 
-"""Nicholas"""
-
-
-def create_classroom(course_code: str, course_name: str,
-                     period: int, teacher: str) -> Dict:
+#Nicholas
+def create_classroom(course_code: str, course_name: str, period: int, teacher: str) -> Dict:
     """Creates a classroom dictionary"""
-    """makes a dictionary with key-value pairs of course_code, course_name,
-    period, teacher, student_list, and assignment_list"""
+    # makes a dictionary with key-value pairs of course_code, course_name, period, teacher, student_list, and assignment_list
     classroom = {
         'course_code': course_code,
         'course_name': course_name,
@@ -47,8 +42,6 @@ def create_classroom(course_code: str, course_name: str,
         json.dump(classroom, f)
     return classroom
 # Seung Joo
-
-
 def calculate_average_mark(student: Dict) -> float:
     """Calculates the average mark of a student"""
     # sorts elements of a given list in ascending order
@@ -66,9 +59,7 @@ def calculate_average_mark(student: Dict) -> float:
     return average
 # answer = calculate_average_mark()
 
-"""Ethan and Nicholas"""
-
-
+#Ethan and Nicholas
 def add_student_to_classroom(student: Dict, classroom: Dict):
     """Adds student to a classroom
 
@@ -83,9 +74,7 @@ def add_student_to_classroom(student: Dict, classroom: Dict):
     return classroom
 
 
-"""Ethan"""
-
-
+#Ethan
 def remove_student_from_classroom(student: Dict, classroom: Dict):
     """Removes student from classroom
 
@@ -101,9 +90,7 @@ def remove_student_from_classroom(student: Dict, classroom: Dict):
         json.dump(classroom, f)
     return classroom
 
-"""Nicholas"""
-
-
+#Nicholas
 def edit_student(student: Dict, **kwargs: Dict):
     """Edits the student's info with the provided key/value pairs
 
@@ -115,26 +102,24 @@ def edit_student(student: Dict, **kwargs: Dict):
     """
     with open('classroom.txt') as f:
         classroom = json.load(f)
-
+    
     i = classroom['student_list'].index(student)
-    """ replaces the first name of the student dictionary
-    with the first name of the kwargs dictionary"""
+    # replaces the first name of the student dictionary with the first name of the kwargs dictionary
     student["first_name"] = kwargs["first_name"]
-    """replaces the last name of the student dictionary
-    with the last name of the kwargs dictionary"""
+    # replaces the last name of the student dictionary with the last name of the kwargs dictionary
     student["last_name"] = kwargs["last_name"]
-
+    
     classroom['student_list'][i] = student
     with open('classroom.txt', 'w') as f:
         json.dump(classroom, f)
     return student
 
-"""Nicholas, Seungjoo and Ethan worked together for the rest of this code"""
 
 
+#Nicholas, Seungjoo and Ethan worked together for the rest of this code
 def create_assignment_interface():
     os.system('clear')
-    print('--------------------------------------------------------------- Create Assignment ---------------------------------------------------------------')
+    print('------------------------------------------------------ Create Assignment ------------------------------------------------------')
     name = input('Enter assignment name: ')
     due_date = input('Enter due date: ')
     # makes sure that the user inputs an integer
@@ -147,10 +132,9 @@ def create_assignment_interface():
             break
     print(create_assignment(name, due_date, marks))
 
-
 def create_classroom_interface():
     os.system('clear')
-    print('--------------------------------------------------------------- Create Classroom ---------------------------------------------------------------')
+    print('------------------------------------------------------- Create Classroom -------------------------------------------------------')
     code = input('Enter the course code: ')
     course_name = input('Enter the course name: ')
     # makes sure that the user enters an integer
@@ -162,14 +146,8 @@ def create_classroom_interface():
         else:
             break
     teacher = input('Enter the teacher name: ')
-    # names = input('Enter the student list: ')
-    # student_list = names.split()
-    # assignments = input('Enter the assignment list: ')
-    # assignment_list = assignments.split()
     print(create_classroom(code, course_name, period, teacher))
     # args: course_code: str, course_name: str, period: int, teacher: str
-    # pass
-
 
 def average_mark_interface():
     os.system('clear')
@@ -185,24 +163,23 @@ def average_mark_interface():
     # splits the string into a list
     mark_list = marks.split(', ')
     i = 0
-    """converts the strings into integers by
-    iterating through the list with a for loop"""
+    # converts the strings into integers by iterating through the list with a for loop
     for mark in mark_list:
         mark_list[i] = int(mark)
         i += 1
     # assigns the marks key with the list of inputted marks
     student = {"marks": mark_list}
     print(calculate_average_mark(student))
-    """ args: student: Dict ->
-    within dict is ['marks': example marks: 10, 20, 30]"""
-
+    # args: student: Dict -> within dict is ['marks': example marks: 10, 20, 30]
+    
 
 def add_student_interface():
-    """args: student: Dict, classroom: Dict"""
+    #args: student: Dict, classroom: Dict
     os.system('clear')
     print('-------------------------------------------------------------------- Add Student --------------------------------------------------------------------')
     first_name = input("Enter the student's first name: ")
     last_name = input("Enter the student's last name: ")
+    # checks if the grade inputted was an integer
     while True:
         try:
             grade = int(input("Enter the student's grade: "))
@@ -221,17 +198,17 @@ def add_student_interface():
     }
     print(add_student_to_classroom(student, classroom))
 
-
 def remove_student_interface():
-    """args: student: Dict, classroom: Dict"""
+    #args: student: Dict, classroom: Dict
     os.system('clear')
     print('-------------------------------------------------------------------- Remove Student --------------------------------------------------------------------')
     first_name = input("Enter the student's first name: ")
     last_name = input("Enter the student's last name: ")
     with open('classroom.txt') as f:
         classroom = json.load(f)
-
+    # makes sure that a student is in the list
     if classroom['student_list'] != []:
+        # checks if the student that needs to be removed is in the list
         for person in classroom['student_list']:
             if person['first_name'] == first_name and person['last_name'] == last_name:
                 student = person
@@ -239,11 +216,11 @@ def remove_student_interface():
     else:
         print('No student to remove')
 
-"""Ethan"""
-
-
+    
+    
+#Ethan
 def edit_student_interface():
-    """args: student: Dict, **kwargs: Dict"""
+    #args: student: Dict, **kwargs: Dict
     os.system('clear')
     print("---------------------------------------------------------------- Edit student -----------------------------------------------")
     first_name = input("Enter student's first name: ")
@@ -251,15 +228,16 @@ def edit_student_interface():
 
     new_first = input("Enter student's new first name: ")
     new_last = input("Enter student's new last name: ")
-
+    
     with open('classroom.txt') as f:
         classroom = json.load(f)
-
+    # checks to see if the student being replaced is in the list
     for person in classroom['student_list']:
         if person['first_name'] == first_name and person['last_name'] == last_name:
             student = person
 
     print(edit_student(student, first_name=new_first, last_name=new_last))
+    
 
 
 def main():
@@ -268,7 +246,7 @@ def main():
     print("------------------------------------------------------- Welcome to the Python Teacher Markbook -------------------------------------------------------")
     while working:
         os.system('clear')
-        print("------------------------------------------------------- Welcome to the Python Teacher Markbook -------------------------------------------------------")
+        print("-------------------------------------------- Welcome to the Python Teacher Markbook --------------------------------------------")
         user_input = int(input('''
 Choose a program to run:
 1: Create an Assignment
@@ -280,7 +258,7 @@ Choose a program to run:
 
 
 Enter # Choice: '''))
-
+    # enters different functions depending on the user input
         if user_input == 1:
             create_assignment_interface()
         elif user_input == 2:
@@ -293,9 +271,11 @@ Enter # Choice: '''))
             remove_student_interface()
         elif user_input == 6:
             edit_student_interface()
-
+        # asks the user if they want to continue with the functions
         keep_going = input('Return to menu? (y/n): ')
         if keep_going == 'n':
             working = False
+
+
 
 main()
